@@ -1,0 +1,63 @@
+{% extends "master.html" %}
+
+{% block title %}
+Store
+{% endblock %}
+
+{% block body %}
+<nav class="navbar">
+    <div class="container">
+        <a class="navbar-brand" style="color: #545454">Ian's Store</a>
+        <ul class="nav justify-content-end">
+            {% if logged %}
+            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+            <a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
+            {% else %}
+            <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+            <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+<h1>Ian's Store</h1>
+<p>
+    <div id="header">
+        <div class="container">
+            {% if logged %}<h1 style="float: right;"><b>${{"{:.2f}".format(balance)}}</b></h1>{% endif %}
+            <h1>All listings:</h1>
+        </div>
+    </div>
+    {% if not items %}
+    <div class="container">
+        <p>There are currently no listings.</p><br>
+    </div>
+    {% else %}
+        {% for item in items %}
+        <div id="items">
+            <div class="container">
+                <div class="button">
+                    {% if logged %}
+                        {% if item['userID'] != userID %}
+                            {% if balance >= item['price'] %}
+                                <a href="{{ url_for('buy', item_price=item['price'], itemID=item['itemID'], sellerID=item['userID']) }}"><button type="button" class="btn btn-secondary">Buy</button></a>
+                            {% else %}
+                                <button type="button" class="btn btn-outline-dark" disabled>Insufficient balance</button>
+                            {% endif %}
+                        {% else %}
+                            <button type="button" class="btn btn-outline-dark" disabled>Your item</button>
+                        {% endif %}
+                    {% else %}
+                        <button type="button" class="btn btn-outline-dark" disabled>Login to purchase</button>
+                    {% endif%}
+                </div>
+                <div id="info">
+                    <h1>{{item['item']}}</label></h1>
+                    <h2>${{"{:.2f}".format(item['price'])}}</h2>
+                    From {{item['seller']}}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+</p>
+{% endblock %}

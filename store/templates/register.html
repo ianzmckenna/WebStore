@@ -1,0 +1,62 @@
+{% extends "master.html" %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block body %}
+<nav class="navbar">
+    <div class="container">
+      <a class="navbar-brand" href="{{ url_for('index') }}">Ian's Store</a>
+        <ul class="nav justify-content-end">
+            <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+            <a class="nav-link" style="color: #545454">Register</a>
+        </ul>
+    </div>
+</nav>
+
+<h1>Register</h1>
+
+<form action="{{ url_for('register') }}" method=post>
+
+    <div class="container">
+        {% if taken %}<span style="color:red; float: right;">{{email}} is already taken.</span>{% endif %}
+        <label for="email">Enter your e-mail:</label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="email" placeholder="example@email.com" required>
+        </div>
+        {% if wrong %}<span style="color:red; float: right;">Passwords do not match.</span>{% endif %}
+        <label for="password">Choose a password:</label>
+        <div class="input-group mb-3">
+            <input type="password" class="form-control" name="password" required>
+        </div>
+        <label for="password">Confirm password:</label>
+        <div class="input-group mb-3">
+            <input type="password" class="form-control" name="password2" required>
+        </div>
+        <label for="name">Name (first and last):</label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="first" placeholder="John" required>
+            <input type="text" class="form-control" name="last" placeholder="Doe" required>
+        </div>
+        <input type="checkbox" name="tos" value="agree" required> I agree to the
+        <a href="" data-toggle="modal" data-target="#exampleModal"><u>Terms of Service</u></a>
+    </div>
+
+    <div class="modal fade" id="exampleModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    I acknowledge that this site is for educational purposes only and data is not encrypted or stored on a secure server.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <button type="submit" class="btn btn-secondary">Create an Account</button>
+</form>
+{% endblock %}

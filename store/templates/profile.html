@@ -1,0 +1,67 @@
+{% extends "master.html" %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block body %}
+<nav class="navbar">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Ian's Store</a>
+        <ul class="nav justify-content-end">
+            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+            <a class="nav-link" style="color: #545454">Profile</a>
+        </ul>
+    </div>
+</nav>
+<h1>Profile</h1>
+<p>
+    <div id="info">
+        <div class="container">
+            <form action="{{ url_for('addBalance') }}" method=post>
+                <div class="balance">
+                    <h1 style="text-align: right;">Balance: <b>${{"{:.2f}".format(balance)}}</b></h1>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input type="number" name="addBalance" class="form-control" placeholder="0.00" min="0" step="0.01" required>
+                    </div>
+                    <button type="submit" style="float: right;" class="btn btn-secondary">Add to Balance</button>
+                </div>
+            </form>
+            <div class="personal">
+                <h1>Personal Information:</h1>
+                E-mail: {{email}}<br>
+                Name: {{name}}<br>
+            </div>
+        </div>
+    </div>
+
+    <div id="header">
+        <div class="container">
+            <a href="{{ url_for('addListing') }}"><button type="button" class="btn btn-outline-dark">Add Listing</button></a>
+            <h1>Your listings:</h1>
+        </div>
+    </div>
+    {% if not items %}
+    <div class="container">
+        <p>You currently have no listings.</p><br>
+    </div>
+    {% else %}
+        {% for item in items %}
+        <div id="items">
+            <div class="container">
+                <div class="button">
+                    <a href="{{ url_for('removeListing', itemID=item['itemID']) }}"><button type="button" class="btn btn-secondary">Remove</button></a>
+                </div>
+                <div id="info">
+                    <h1>{{item['item']}}</label></h1>
+                    <h2>${{"{:.2f}".format(item['price'])}}</h2>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+    </p>
+{% endblock %}

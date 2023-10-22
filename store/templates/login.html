@@ -1,0 +1,35 @@
+{% extends "master.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block body %}
+<nav class="navbar">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Ian's Store</a>
+        <ul class="nav justify-content-end">
+            <a class="nav-link" style="color: #545454">Login</a>
+            <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+        </ul>
+    </div>
+</nav>
+<h1>Login</h1>
+<form action="{{ url_for('login') }}" method=post>
+
+    <div class="container">
+        {% if wrong %}<span style="color:red; float: right;">No accounts match the e-mail and password given.</span>{% endif %}
+        <label for="email">E-mail:</label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="email" placeholder="example@email.com" required>
+        </div>
+        <label for="password">Password:</label>
+        <div class="input-group mb-3">
+            <input type="password" class="form-control" name="password" required>
+        </div>
+    </div>
+    <br>
+
+    <button type="submit" class="btn btn-secondary">Log In</button>
+</form>
+{% endblock %}

@@ -1,0 +1,102 @@
+body {
+    font-family: 'Arial';
+    font-size: 14pt;
+    text-align: center;
+    overflow-y: overlay;
+}
+
+h1 {
+    font-size: 24pt;
+}
+
+h2 {
+    font-size: 16pt;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.container {
+    text-align: left;
+}
+
+.container button {
+    float: right;
+}
+
+#header .container {
+    padding: 10px;
+}
+
+#info .container {
+    padding: 10px;
+    border-bottom: 1px solid #dbdbdb;
+    padding-bottom: 30px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+#info .container .personal {
+    display: inline-block;
+}
+
+#info .container .balance {
+    float: right;
+}
+
+#items .container {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #dbdbdb;
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
+button {
+    font-size: 16pt;
+}
+
+nav {
+    background-color: #bfbfbf;
+    font-family: 'Arial';
+    margin-bottom: 20px;
+    padding: 20px;
+    font-size: 15pt;
+}
+
+.navbar-brand:hover, .nav-link:hover {
+    text-decoration: underline;
+}
+
+a .disabled, .disabled:hover {
+    color: #545454;
+    text-decoration: none;
+}
+
+.navbar-brand {
+    font-size: 20pt;
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    color: #545454;
+}
+
+.form-control:focus{
+    border-color: black;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.input-group input {
+    border-color: black;
+}
+
+.input-group-text {
+    background-color: #dbdbdb;
+    border-color: black;
+}
